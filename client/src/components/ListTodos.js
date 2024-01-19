@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EditTodo from './EditTodo';
+const PORT = process.env.REACT_APP_PORT;
 
 const ListTodos = () => {
     const [ todos, setTodos ] = useState([]);
@@ -7,7 +8,7 @@ const ListTodos = () => {
     // Delete Function
     const deleteTodo = async (id) => {
         try {
-            const deleteTodo = await fetch(`http://localhost:4000/todos/${id}`, {
+            const deleteTodo = await fetch(`http://localhost:${PORT}/todos/${id}`, {
                 method: "DELETE"
             });
             setTodos(todos.filter(todo => todo.todo_id !== id))
@@ -19,7 +20,7 @@ const ListTodos = () => {
     // GET todos 
     const getTodos = async() => {
         try {
-            const response = await fetch("http://localhost:4000/todos");
+            const response = await fetch(`http://localhost:${PORT}/todos`);
             const jsonData = await response.json();
 
             setTodos(jsonData);

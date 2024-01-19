@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+const PORT = process.env.REACT_APP_PORT;
+
 
 const InputTodo = () => {
     const [ description, setDescription ] = useState("");
@@ -8,7 +10,7 @@ const InputTodo = () => {
         
         try {
             const body = { description };
-            const response = await fetch("http://localhost:4000/todos", {
+            const response = await fetch(`http://localhost:${PORT}/todos`, {
                 method: "POST",
                 headers: { "Content-Type" : "application/json" },
                 body: JSON.stringify(body)
